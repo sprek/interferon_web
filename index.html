@@ -64,12 +64,12 @@
               <div class="form-group row">
                   <label class="col-2 col-form-label">Your position:</label>
                   <div class="col-10">
-                      <div id="num_player_btns" class="btn-group" data-toggle="buttons">
-                          <label class="btn btn-primary active"><input type="radio" name="player_pos" id="pos1" autocomplete="off" value="1" checked>1</label>
-                          <label class="btn btn-primary"><input type="radio" name="player_pos" id="pos2" autocomplete="off" value="2">2</label>
-                          <label class="btn btn-primary"><input type="radio" name="player_pos" id="pos3" autocomplete="off" value="3">3</label>
-                          <label class="btn btn-primary"><input type="radio" name="player_pos" id="pos4" autocomplete="off" value="4">4</label>
-                          <label class="btn btn-primary"><input type="radio" name="player_pos" id="pos5" autocomplete="off" value="5">5</label>
+                      <div class="btn-group" data-toggle="buttons">
+                          <label id="pos1" class="btn btn-primary active"><input type="radio" name="player_pos"  autocomplete="off" value="1" checked>1</label>
+                          <label id="pos2" class="btn btn-primary"><input type="radio" name="player_pos"  autocomplete="off" value="2">2</label>
+                          <label id="pos3" class="btn btn-primary"><input type="radio" name="player_pos"  autocomplete="off" value="3">3</label>
+                          <label id="pos4" class="btn btn-primary"><input type="radio" name="player_pos"  autocomplete="off" value="4">4</label>
+                          <label id="pos5" class="btn btn-primary"><input type="radio" name="player_pos"  autocomplete="off" value="5">5</label>
                       </div>
                   </div>
               </div>
@@ -190,6 +190,16 @@
 	 //$("#seedButton").click(function() {
 	 //$("#seedText").val(Math.floor((Math.random() * 999) + 1));
 	 //});
+         $("input:radio[name=num_players]").change(function () {
+             var num_players=parseInt($("input:radio[name=num_players]:checked").val())-1;
+             p_list=['pos1','pos2','pos3','pos4','pos5'];
+             p_list.forEach(function(item,index) {
+                 $("#"+item).attr("disabled",false);
+             });
+             p_list.slice(num_players+1,5).forEach(function(item,index) {
+                 $("#"+item).attr("disabled",true);
+             });
+         });
          $("#startGame").click(function() {
              Math.seedrandom(hashCode($("#seedText").val()));
 
