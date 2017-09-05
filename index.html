@@ -31,18 +31,21 @@
       <div class="container">
           <!--<div class="row">-->
           <div class="row">
+	    <div class="col-xs-12">
               <h1>Interferon</h1>
+	    </div>
           </div>
 
-              <div class="form-group row">
-                  <form class="form-inline" role="form">
-                    <input type="text" class="form-control" id="seedText" aria-describedby="seedText" placeholder="Enter room code">
+          <div class="form-group row">
+	    <label class="col-xs-4 col-form-label">Game code:</label>
+                  <form class="form-inline col-xs-8" role="form">
+                    <input type="text" class="form-control" id="seedText" aria-describedby="seedText">
 		    <!--<button type="button" class="btn btn-default" id="seedButton" style="margin-left: 20px">Generate Code</button> -->
                   </form>
               </div>
               <div class="form-group row">
-                  <label class="col-2 col-form-label">Card type:</label>
-                  <div class="col-10">
+                  <label class="col-xs-4 col-form-label">Card type:</label>
+                  <div class="col-xs-8">
                       <div class="btn-group" data-toggle="buttons">
                           <label class="btn btn-primary active"><input type="radio" name="card_type" id="type1" autocomplete="off" value="letter" checked>DNA</label>
                           <label class="btn btn-primary"><input type="radio" name="card_type" id="type2" autocomplete="off" value="shape">Shape</label>
@@ -50,8 +53,8 @@
                   </div>
               </div>
               <div class="form-group row">
-                  <label class="col-2 col-form-label">Number of players:</label>
-                  <div class="col-10">
+                  <label class="col-xs-4 col-form-label">Number of players:</label>
+                  <div class="col-xs-8">
                       <div class="btn-group" data-toggle="buttons">
                           <label class="btn btn-primary active"><input type="radio" name="num_players" id="num1" autocomplete="off" value="1" checked>1</label>
                           <label class="btn btn-primary"><input type="radio" name="num_players" id="num2" autocomplete="off" value="2">2</label>
@@ -62,8 +65,8 @@
                   </div>
               </div>
               <div class="form-group row">
-                  <label class="col-2 col-form-label">Your position:</label>
-                  <div class="col-10">
+                  <label class="col-xs-4 col-form-label">Your position:</label>
+                  <div class="col-xs-8">
                       <div class="btn-group" data-toggle="buttons">
                           <label id="pos1" class="btn btn-primary active"><input type="radio" name="player_pos"  autocomplete="off" value="1" checked>1</label>
                           <label id="pos2" class="btn btn-primary"><input type="radio" name="player_pos"  autocomplete="off" value="2">2</label>
@@ -75,44 +78,60 @@
               </div>
 
               <div class="row">
+		<div class="col-xs-12">
                   <button class="btn btn-default" id="startGame">View Rules</button>
+		</div>
               </div>
               <hr>
               <div class="row invis" id="a_jacency">
+		<div class="col-xs-12">
                   <h2>Adjacency</h2>
                   <p>All <span id="adjacency_val">triangles</span> cards must be next to eachother. (Minimum 2)</p>
+		</div>
               </div>
               <div class="row invis" id="attraction">
+		<div class="col-xs-12">
                   <h2>Attraction</h2>
                   <p>All <span id="attraction_val">triangles</span> cards must have 3 non-empty spaces next to them. (Minimum 1)</p>
+		</div>
               </div>
               <div class="row invis" id="attribution">
+		<div class="col-xs-12">
                   <h2>Attribution</h2>
                   <p>All <span id="attribution_val1">triangles</span> must also be <span id="attribution_val2">triangles</span>. (Minimum 1)</p>
+		</div>
               </div>
               <div class="row invis" id="equilibrium">
+		<div class="col-xs-12">
                   <h2>Equilibrium</h2>
                   <p>There must be the same amount of <span id="equilibrium_val">triangles</span> above and below the middle line. (Minimum 2)</p>
+		</div>
               </div>
               <div class="row invis" id="priority">
+		<div class="col-xs-12">
                   <h2>Priority</h2>
                   <p>There must be a greater number of <span id="priority_val1">triangles</span> cards than <span id="priority_val2">triangles</span>. Both types of cards must exist.</p>
+		</div>
               </div>
               <div class="row invis" id="repulsion">
+		<div class="col-xs-12">
                   <h2>Repulsion</h2>
                   <p>No <span id="repulsion_val1">triangles</span> next to a any <span id="repulsion_val2">triangles</span>. (Minimum 1 of each)</p>
+		</div>
               </div>
               <div class="row invis" id="uniformity">
+		<div class="col-xs-12">
                   <h2>Uniformity</h2>
                   <p>All <span id="uniformity_val">triangles</span> must be in a single column. (Minimum 2)</p>
+		</div>
               </div>
               <div class="row invis" id="zoning">
+		<div class="col-xs-12">
                   <h2>Zoning</h2>
                   <p>There can be no cards in the following area: <span id="zoning_val">triangles</span></p>
+		</div>
               </div>
-
           </div>
-      <!--</div> -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -129,8 +148,9 @@
      }
 
      function shuffle(array) {
+	 "use strict";
          // function taken from: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
-         tmp_array = array.slice(0);
+         var tmp_array = array.slice(0);
          let counter = tmp_array.length;
          // While there are elements in the tmp_array
          while (counter > 0) {
@@ -199,6 +219,10 @@
              p_list.slice(num_players+1,5).forEach(function(item,index) {
                  $("#"+item).attr("disabled",true);
              });
+	     var player_pos=parseInt($("input:radio[name=player_pos]:checked").val())-1;
+	     if (player_pos > num_players) {
+		 $("#"+p_list[num_players]).click();
+	     }
          });
          $("#startGame").click(function() {
              Math.seedrandom(hashCode($("#seedText").val()));
