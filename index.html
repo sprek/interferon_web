@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link href="/static/favicon.ico" rel="shortcut icon" />
     <title>Interferon</title>
 
     <!-- Bootstrap -->
@@ -20,21 +21,33 @@
     <style>
      .invis {
          display: none;
-         }
-	 .vis {
+     }
+     .vis {
          display: block;
-         }
+     }
     </style>
   </head>
   <body>
       <div class="container">
           <!--<div class="row">-->
+          <div class="row">
               <h1>Interferon</h1>
+          </div>
+
               <div class="form-group row">
                   <form class="form-inline" role="form">
                     <input type="text" class="form-control" id="seedText" aria-describedby="seedText" placeholder="Enter room code">
 		    <!--<button type="button" class="btn btn-default" id="seedButton" style="margin-left: 20px">Generate Code</button> -->
                   </form>
+              </div>
+              <div class="form-group row">
+                  <label class="col-2 col-form-label">Card type:</label>
+                  <div class="col-10">
+                      <div class="btn-group" data-toggle="buttons">
+                          <label class="btn btn-primary active"><input type="radio" name="card_type" id="type1" autocomplete="off" value="letter" checked>DNA</label>
+                          <label class="btn btn-primary"><input type="radio" name="card_type" id="type2" autocomplete="off" value="shape">Shape</label>
+                      </div>
+                  </div>
               </div>
               <div class="form-group row">
                   <label class="col-2 col-form-label">Number of players:</label>
@@ -60,7 +73,7 @@
                       </div>
                   </div>
               </div>
-              
+
               <div class="row">
                   <button class="btn btn-default" id="startGame">View Rules</button>
               </div>
@@ -97,7 +110,7 @@
                   <h2>Zoning</h2>
                   <p>There can be no cards in the following area: <span id="zoning_val">triangles</span></p>
               </div>
-              
+
           </div>
       <!--</div> -->
 
@@ -132,24 +145,33 @@
          }
          return tmp_array;
      }
-     
-     //var adjacency_opts=['T','C','G','A','red','green','blue','yellow'];
-     //var attraction_opts=['T','C','G','A','red','green','blue','yellow'];
-     //var attribution_opts=[['red', 'T'], ['green', 'T'], ['blue', 'T'], ['yellow', 'T'], ['red', 'C'], ['green', 'C'], ['blue', 'C'], ['yellow', 'C'], ['red', 'G'], ['green', 'G'], ['blue', 'G'], ['yellow', 'G'], ['red', 'A'], ['green', 'A'], ['blue', 'A'], ['yellow', 'A']];
-     //var equilibrium_opts=['T','C','G','A','red','green','blue','yellow'];
-     //var priority_opts=[['T','C'], ['T','G'], ['T','A'], ['C','T'], ['C','G'], ['C','A'], ['G','T'], ['G','C'], ['G','A'], ['A','T'], ['A','C'], ['A','G']];
-     //var repulsion_opts=[['T','C'], ['T','G'], ['T','A'], ['C','G'], ['C','A'], ['G','A'], ['red', 'green'], ['red', 'blue'], ['red', 'yellow'], ['green', 'blue'], ['green', 'yellow'], ['blue', 'yellow']];
-     //var uniformity_opts=['T','C','G','A','red','green','blue','yellow'];
 
-     var adjacency_opts=['triangle','square','star','circle','red','green','blue','yellow'];
-     var attraction_opts=['triangle','square','star','circle','red','green','blue','yellow'];
-     var attribution_opts=[['red', 'triangle'], ['green', 'triangle'], ['blue', 'triangle'], ['yellow', 'triangle'], ['red', 'square'], ['green', 'square'], ['blue', 'square'], ['yellow', 'square'], ['red', 'star'], ['green', 'star'], ['blue', 'star'], ['yellow', 'star'], ['red', 'circle'], ['green', 'circle'], ['blue', 'circle'], ['yellow', 'circle']];
-     var equilibrium_opts=['triangle','square','star','circle','red','green','blue','yellow'];
-     var priority_opts=[['triangle','square'], ['triangle','star'], ['triangle','circle'], ['square','triangle'], ['square','star'], ['square','circle'], ['star','triangle'], ['star','square'], ['star','circle'], ['circle','triangle'], ['circle','square'], ['circle','star']];
-     var repulsion_opts=[['triangle','square'], ['triangle','star'], ['triangle','circle'], ['square','star'], ['square','circle'], ['star','circle'], ['red', 'green'], ['red', 'blue'], ['red', 'yellow'], ['green', 'blue'], ['green', 'yellow'], ['blue', 'yellow']];
-     var uniformity_opts=['triangle','square','star','circle','red','green','blue','yellow'];
 
-     
+     var letter_adjacency_opts=['T','C','G','A','red','green','blue','yellow'];
+     var letter_attraction_opts=['T','C','G','A','red','green','blue','yellow'];
+     var letter_attribution_opts=[['red', 'T'], ['green', 'T'], ['blue', 'T'], ['yellow', 'T'], ['red', 'C'], ['green', 'C'], ['blue', 'C'], ['yellow', 'C'], ['red', 'G'], ['green', 'G'], ['blue', 'G'], ['yellow', 'G'], ['red', 'A'], ['green', 'A'], ['blue', 'A'], ['yellow', 'A']];
+     var letter_equilibrium_opts=['T','C','G','A','red','green','blue','yellow'];
+     var letter_priority_opts=[['T','C'], ['T','G'], ['T','A'], ['C','T'], ['C','G'], ['C','A'], ['G','T'], ['G','C'], ['G','A'], ['A','T'], ['A','C'], ['A','G']];
+     var letter_repulsion_opts=[['T','C'], ['T','G'], ['T','A'], ['C','G'], ['C','A'], ['G','A'], ['red', 'green'], ['red', 'blue'], ['red', 'yellow'], ['green', 'blue'], ['green', 'yellow'], ['blue', 'yellow']];
+     var letter_uniformity_opts=['T','C','G','A','red','green','blue','yellow'];
+
+     var shape_adjacency_opts=['triangle','square','star','circle','red','green','blue','yellow'];
+     var shape_attraction_opts=['triangle','square','star','circle','red','green','blue','yellow'];
+     var shape_attribution_opts=[['red', 'triangle'], ['green', 'triangle'], ['blue', 'triangle'], ['yellow', 'triangle'], ['red', 'square'], ['green', 'square'], ['blue', 'square'], ['yellow', 'square'], ['red', 'star'], ['green', 'star'], ['blue', 'star'], ['yellow', 'star'], ['red', 'circle'], ['green', 'circle'], ['blue', 'circle'], ['yellow', 'circle']];
+     var shape_equilibrium_opts=['triangle','square','star','circle','red','green','blue','yellow'];
+     var shape_priority_opts=[['triangle','square'], ['triangle','star'], ['triangle','circle'], ['square','triangle'], ['square','star'], ['square','circle'], ['star','triangle'], ['star','square'], ['star','circle'], ['circle','triangle'], ['circle','square'], ['circle','star']];
+     var shape_repulsion_opts=[['triangle','square'], ['triangle','star'], ['triangle','circle'], ['square','star'], ['square','circle'], ['star','circle'], ['red', 'green'], ['red', 'blue'], ['red', 'yellow'], ['green', 'blue'], ['green', 'yellow'], ['blue', 'yellow']];
+     var shape_uniformity_opts=['triangle','square','star','circle','red','green','blue','yellow'];
+
+     var adjacency_opts=[];
+     var attraction_opts=[];
+     var attribution_opts=[];
+     var equilibrium_opts=[];
+     var priority_opts=[];
+     var repulsion_opts=[];
+     var uniformity_opts=[];
+
+
      //var zoning_opts=['top left quadrant', 'top middle quadrant', 'top right quadrant', 'middle left quadrant', 'middle right quadrant', 'lower left quadrant', 'lower middle quadrant', 'lower right quadrant', 'column 1', 'column 2', 'column 3', 'column 4', 'row 1', 'row 2', 'row 3', 'row 4'];
      var zoning_opts=['top left quadrant', 'top right quadrant', 'middle left quadrant', 'middle right quadrant', 'lower left quadrant', 'lower right quadrant', 'column 1', 'column 2', 'column 3', 'column 4', 'row 1', 'row 4'];
      var rule_names=["a_jacency", "attraction", "attribution", "equilibrium", "priority", "repulsion", "uniformity", "zoning"];
@@ -159,7 +181,7 @@
                            [[0,3],[3,6],[6,8]],
                            [[0,2],[2,4],[4,6],[6,8]],
                            [[0,2],[2,4],[4,6],[6,7],[7,8]]];
-     
+
      $(document).ready(function() {
          //$("#num_player_btns :input").change(function(){
          //    alert ("TEST");
@@ -170,6 +192,26 @@
 	 //});
          $("#startGame").click(function() {
              Math.seedrandom(hashCode($("#seedText").val()));
+
+             var card_type=$("input:radio[name=card_type]:checked").val();
+             if (card_type == "letter") {
+                 adjacency_opts =  letter_adjacency_opts;
+                 attraction_opts = letter_attraction_opts;
+                 attribution_opts =letter_attribution_opts;
+                 equilibrium_opts =letter_equilibrium_opts;
+                 priority_opts =   letter_priority_opts;
+                 repulsion_opts =  letter_repulsion_opts;
+                 uniformity_opts = letter_uniformity_opts;
+             } else {
+                 adjacency_opts =  shape_adjacency_opts;
+                 attraction_opts = shape_attraction_opts;
+                 attribution_opts =shape_attribution_opts;
+                 equilibrium_opts =shape_equilibrium_opts;
+                 priority_opts =   shape_priority_opts;
+                 repulsion_opts =  shape_repulsion_opts;
+                 uniformity_opts = shape_uniformity_opts;
+             }
+
              var adjacency = adjacency_opts[Math.floor(Math.random() * adjacency_opts.length)];
              $("#adjacency_val").html(adjacency);
              var attraction = attraction_opts[Math.floor(Math.random() * attraction_opts.length)];
@@ -201,12 +243,12 @@
              var slice_vals=rules_per_person[num_players][player_pos];
 
 	     //alert(shuffled_rules.slice(slice_vals[0], slice_vals[1]));
-										     
+
              shuffled_rules.forEach(function(rule_id, index) {
                  $("#"+rule_id).addClass("invis");
 		 $("#"+rule_id).removeClass("vis");
              });
-             
+
              shuffled_rules.slice(slice_vals[0], slice_vals[1]).forEach(function(rule_id, index) {
                  $("#"+rule_id).removeClass("invis");
 		 $("#"+rule_id).addClass("vis");
@@ -214,12 +256,9 @@
 
          });
          $("#seedText").val(Math.floor((Math.random() * 999) + 1));
-         
+
      });
     </script>
-    
+
   </body>
 </html>
-
-
-
