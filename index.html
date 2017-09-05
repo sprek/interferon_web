@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Interferon</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+     .invis {
+         display: none;
+         }
+	 .vis {
+         display: block;
+         }
+    </style>
+  </head>
+  <body>
+      <div class="container">
+          <!--<div class="row">-->
+              <h1>Interferon</h1>
+              <div class="form-group row">
+                  <form class="form-inline" role="form">
+                    <input type="text" class="form-control" id="seedText" aria-describedby="seedText" placeholder="Enter room code">
+		    <!--<button type="button" class="btn btn-default" id="seedButton" style="margin-left: 20px">Generate Code</button> -->
+                  </form>
+              </div>
+              <div class="form-group row">
+                  <label class="col-2 col-form-label">Number of players:</label>
+                  <div class="col-10">
+                      <div class="btn-group" data-toggle="buttons">
+                          <label class="btn btn-primary active"><input type="radio" name="num_players" id="num1" autocomplete="off" value="1" checked>1</label>
+                          <label class="btn btn-primary"><input type="radio" name="num_players" id="num2" autocomplete="off" value="2">2</label>
+                          <label class="btn btn-primary"><input type="radio" name="num_players" id="num3" autocomplete="off" value="3">3</label>
+                          <label class="btn btn-primary"><input type="radio" name="num_players" id="num4" autocomplete="off" value="4">4</label>
+                          <label class="btn btn-primary"><input type="radio" name="num_players" id="num5" autocomplete="off" value="5">5</label>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-2 col-form-label">Your position:</label>
+                  <div class="col-10">
+                      <div id="num_player_btns" class="btn-group" data-toggle="buttons">
+                          <label class="btn btn-primary active"><input type="radio" name="player_pos" id="pos1" autocomplete="off" value="1" checked>1</label>
+                          <label class="btn btn-primary"><input type="radio" name="player_pos" id="pos2" autocomplete="off" value="2">2</label>
+                          <label class="btn btn-primary"><input type="radio" name="player_pos" id="pos3" autocomplete="off" value="3">3</label>
+                          <label class="btn btn-primary"><input type="radio" name="player_pos" id="pos4" autocomplete="off" value="4">4</label>
+                          <label class="btn btn-primary"><input type="radio" name="player_pos" id="pos5" autocomplete="off" value="5">5</label>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="row">
+                  <button class="btn btn-default" id="startGame">View Rules</button>
+              </div>
+              <hr>
+              <div class="row invis" id="a_jacency">
+                  <h2>Adjacency</h2>
+                  <p>All <span id="adjacency_val">triangles</span> cards must be next to eachother. (Minimum 2)</p>
+              </div>
+              <div class="row invis" id="attraction">
+                  <h2>Attraction</h2>
+                  <p>All <span id="attraction_val">triangles</span> cards must have 3 non-empty spaces next to them. (Minimum 1)</p>
+              </div>
+              <div class="row invis" id="attribution">
+                  <h2>Attribution</h2>
+                  <p>All <span id="attribution_val1">triangles</span> must also be <span id="attribution_val2">triangles</span>. (Minimum 1)</p>
+              </div>
+              <div class="row invis" id="equilibrium">
+                  <h2>Equilibrium</h2>
+                  <p>There must be the same amount of <span id="equilibrium_val">triangles</span> above and below the middle line. (Minimum 2)</p>
+              </div>
+              <div class="row invis" id="priority">
+                  <h2>Priority</h2>
+                  <p>There must be a greater number of <span id="priority_val1">triangles</span> cards than <span id="priority_val2">triangles</span>. Both types of cards must exist.</p>
+              </div>
+              <div class="row invis" id="repulsion">
+                  <h2>Repulsion</h2>
+                  <p>No <span id="repulsion_val1">triangles</span> next to a any <span id="repulsion_val2">triangles</span>. (Minimum 1 of each)</p>
+              </div>
+              <div class="row invis" id="uniformity">
+                  <h2>Uniformity</h2>
+                  <p>All <span id="uniformity_val">triangles</span> must be in a single column. (Minimum 2)</p>
+              </div>
+              <div class="row invis" id="zoning">
+                  <h2>Zoning</h2>
+                  <p>There can be no cards in the following area: <span id="zoning_val">triangles</span></p>
+              </div>
+              
+          </div>
+      <!--</div> -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.3/seedrandom.js"></script>
+
+    <script type="text/javascript">
+
+     hashCode = function(s){
+         // function taken from: https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery
+         return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+     }
+
+     function shuffle(array) {
+         // function taken from: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+         tmp_array = array.slice(0);
+         let counter = tmp_array.length;
+         // While there are elements in the tmp_array
+         while (counter > 0) {
+             // Pick a random index
+             let index = Math.floor(Math.random() * counter);
+             // Decrease counter by 1
+             counter--;
+             // And swap the last element with it
+             let temp = tmp_array[counter];
+             tmp_array[counter] = tmp_array[index];
+             tmp_array[index] = temp;
+         }
+         return tmp_array;
+     }
+     
+     //var adjacency_opts=['T','C','G','A','red','green','blue','yellow'];
+     //var attraction_opts=['T','C','G','A','red','green','blue','yellow'];
+     //var attribution_opts=[['red', 'T'], ['green', 'T'], ['blue', 'T'], ['yellow', 'T'], ['red', 'C'], ['green', 'C'], ['blue', 'C'], ['yellow', 'C'], ['red', 'G'], ['green', 'G'], ['blue', 'G'], ['yellow', 'G'], ['red', 'A'], ['green', 'A'], ['blue', 'A'], ['yellow', 'A']];
+     //var equilibrium_opts=['T','C','G','A','red','green','blue','yellow'];
+     //var priority_opts=[['T','C'], ['T','G'], ['T','A'], ['C','T'], ['C','G'], ['C','A'], ['G','T'], ['G','C'], ['G','A'], ['A','T'], ['A','C'], ['A','G']];
+     //var repulsion_opts=[['T','C'], ['T','G'], ['T','A'], ['C','G'], ['C','A'], ['G','A'], ['red', 'green'], ['red', 'blue'], ['red', 'yellow'], ['green', 'blue'], ['green', 'yellow'], ['blue', 'yellow']];
+     //var uniformity_opts=['T','C','G','A','red','green','blue','yellow'];
+
+     var adjacency_opts=['triangle','square','star','circle','red','green','blue','yellow'];
+     var attraction_opts=['triangle','square','star','circle','red','green','blue','yellow'];
+     var attribution_opts=[['red', 'triangle'], ['green', 'triangle'], ['blue', 'triangle'], ['yellow', 'triangle'], ['red', 'square'], ['green', 'square'], ['blue', 'square'], ['yellow', 'square'], ['red', 'star'], ['green', 'star'], ['blue', 'star'], ['yellow', 'star'], ['red', 'circle'], ['green', 'circle'], ['blue', 'circle'], ['yellow', 'circle']];
+     var equilibrium_opts=['triangle','square','star','circle','red','green','blue','yellow'];
+     var priority_opts=[['triangle','square'], ['triangle','star'], ['triangle','circle'], ['square','triangle'], ['square','star'], ['square','circle'], ['star','triangle'], ['star','square'], ['star','circle'], ['circle','triangle'], ['circle','square'], ['circle','star']];
+     var repulsion_opts=[['triangle','square'], ['triangle','star'], ['triangle','circle'], ['square','star'], ['square','circle'], ['star','circle'], ['red', 'green'], ['red', 'blue'], ['red', 'yellow'], ['green', 'blue'], ['green', 'yellow'], ['blue', 'yellow']];
+     var uniformity_opts=['triangle','square','star','circle','red','green','blue','yellow'];
+
+     
+     //var zoning_opts=['top left quadrant', 'top middle quadrant', 'top right quadrant', 'middle left quadrant', 'middle right quadrant', 'lower left quadrant', 'lower middle quadrant', 'lower right quadrant', 'column 1', 'column 2', 'column 3', 'column 4', 'row 1', 'row 2', 'row 3', 'row 4'];
+     var zoning_opts=['top left quadrant', 'top right quadrant', 'middle left quadrant', 'middle right quadrant', 'lower left quadrant', 'lower right quadrant', 'column 1', 'column 2', 'column 3', 'column 4', 'row 1', 'row 4'];
+     var rule_names=["a_jacency", "attraction", "attribution", "equilibrium", "priority", "repulsion", "uniformity", "zoning"];
+
+     var rules_per_person=[[[0,8]],
+                           [[0,4],[4,8]],
+                           [[0,3],[3,6],[6,8]],
+                           [[0,2],[2,4],[4,6],[6,8]],
+                           [[0,2],[2,4],[4,6],[6,7],[7,8]]];
+     
+     $(document).ready(function() {
+         //$("#num_player_btns :input").change(function(){
+         //    alert ("TEST");
+         //    //alert (parseInt($("input:radio[name=num_players]:checked").val()));
+         //});
+	 //$("#seedButton").click(function() {
+	 //$("#seedText").val(Math.floor((Math.random() * 999) + 1));
+	 //});
+         $("#startGame").click(function() {
+             Math.seedrandom(hashCode($("#seedText").val()));
+             var adjacency = adjacency_opts[Math.floor(Math.random() * adjacency_opts.length)];
+             $("#adjacency_val").html(adjacency);
+             var attraction = attraction_opts[Math.floor(Math.random() * attraction_opts.length)];
+             $("#attraction_val").html(attraction);
+             var attribution = attribution_opts[Math.floor(Math.random() * attribution_opts.length)];
+             $("#attribution_val1").html(attribution[0]);
+             $("#attribution_val2").html(attribution[1]);
+             var equilibrium = equilibrium_opts[Math.floor(Math.random() * equilibrium_opts.length)];
+             $("#equilibrium_val").html(equilibrium);
+             var priority = priority_opts[Math.floor(Math.random() * priority_opts.length)];
+             $("#priority_val1").html(priority[0]);
+             $("#priority_val2").html(priority[1]);
+             var repulsion = repulsion_opts[Math.floor(Math.random() * repulsion_opts.length)];
+             $("#repulsion_val1").html(repulsion[0]);
+             $("#repulsion_val2").html(repulsion[1]);
+             var uniformity = uniformity_opts[Math.floor(Math.random() * uniformity_opts.length)];
+             $("#uniformity_val").html(uniformity);
+             var zoning = zoning_opts[Math.floor(Math.random() * zoning_opts.length)];
+             $("#zoning_val").html(zoning);
+
+             // pick which ones are visibile
+             //alert (Math.floor(Math.random() * 5));
+             //Math.floor(Math.random() *
+             var shuffled_rules = shuffle(rule_names);
+             //alert ("SHUFFLED RULES: " + rule_names);
+
+             var num_players=parseInt($("input:radio[name=num_players]:checked").val())-1;
+             var player_pos=parseInt($("input:radio[name=player_pos]:checked").val())-1;
+             var slice_vals=rules_per_person[num_players][player_pos];
+
+	     //alert(shuffled_rules.slice(slice_vals[0], slice_vals[1]));
+										     
+             shuffled_rules.forEach(function(rule_id, index) {
+                 $("#"+rule_id).addClass("invis");
+		 $("#"+rule_id).removeClass("vis");
+             });
+             
+             shuffled_rules.slice(slice_vals[0], slice_vals[1]).forEach(function(rule_id, index) {
+                 $("#"+rule_id).removeClass("invis");
+		 $("#"+rule_id).addClass("vis");
+             });
+
+         });
+         $("#seedText").val(Math.floor((Math.random() * 999) + 1));
+         
+     });
+    </script>
+    
+  </body>
+</html>
+
+
+
