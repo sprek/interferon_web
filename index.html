@@ -169,17 +169,21 @@
 
      var letter_adjacency_opts=['T','C','G','A','red','green','blue','yellow'];
      var letter_attraction_opts=['T','C','G','A','red','green','blue','yellow'];
-     var letter_attribution_opts=[['red', 'T'], ['green', 'T'], ['blue', 'T'], ['yellow', 'T'], ['red', 'C'], ['green', 'C'], ['blue', 'C'], ['yellow', 'C'], ['red', 'G'], ['green', 'G'], ['blue', 'G'], ['yellow', 'G'], ['red', 'A'], ['green', 'A'], ['blue', 'A'], ['yellow', 'A']];
+     //var letter_attribution_opts=[['red', 'T'], ['green', 'T'], ['blue', 'T'], ['yellow', 'T'], ['red', 'C'], ['green', 'C'], ['blue', 'C'], ['yellow', 'C'], ['red', 'G'], ['green', 'G'], ['blue', 'G'], ['yellow', 'G'], ['red', 'A'], ['green', 'A'], ['blue', 'A'], ['yellow', 'A']];
+     var letter_attribution_opts=[['T', 'red'], ['T', 'green'], ['T', 'blue'], ['T', 'yellow'], ['C', 'red'], ['C', 'green'], ['C', 'blue'], ['yellow', 'yellow'], ['G', 'red'], ['G', 'green'], ['G', 'blue'], ['G', 'yellow'], ['A', 'red'], ['A', 'green'], ['A', 'blue'], ['A', 'yellow']];
      var letter_equilibrium_opts=['T','C','G','A','red','green','blue','yellow'];
-     var letter_priority_opts=[['T','C'], ['T','G'], ['T','A'], ['C','T'], ['C','G'], ['C','A'], ['G','T'], ['G','C'], ['G','A'], ['A','T'], ['A','C'], ['A','G']];
+     //var letter_priority_opts=[['T','C'], ['T','G'], ['T','A'], ['C','T'], ['C','G'], ['C','A'], ['G','T'], ['G','C'], ['G','A'], ['A','T'], ['A','C'], ['A','G']];
+     var letter_priority_opts=[['red','green'], ['red','blue'], ['red','yellow'], ['green','red'], ['green','blue'], ['green','yellow'], ['blue','red'], ['blue','green'], ['blue','yellow'], ['yellow','red'], ['yellow','green'], ['yellow','blue']];
      var letter_repulsion_opts=[['T','C'], ['T','G'], ['T','A'], ['C','G'], ['C','A'], ['G','A'], ['red', 'green'], ['red', 'blue'], ['red', 'yellow'], ['green', 'blue'], ['green', 'yellow'], ['blue', 'yellow']];
      var letter_uniformity_opts=['T','C','G','A','red','green','blue','yellow'];
 
      var shape_adjacency_opts=['triangle','square','star','circle','red','green','blue','yellow'];
      var shape_attraction_opts=['triangle','square','star','circle','red','green','blue','yellow'];
-     var shape_attribution_opts=[['red', 'triangle'], ['green', 'triangle'], ['blue', 'triangle'], ['yellow', 'triangle'], ['red', 'square'], ['green', 'square'], ['blue', 'square'], ['yellow', 'square'], ['red', 'star'], ['green', 'star'], ['blue', 'star'], ['yellow', 'star'], ['red', 'circle'], ['green', 'circle'], ['blue', 'circle'], ['yellow', 'circle']];
+     //var shape_attribution_opts=[['red', 'triangle'], ['green', 'triangle'], ['blue', 'triangle'], ['yellow', 'triangle'], ['red', 'square'], ['green', 'square'], ['blue', 'square'], ['yellow', 'square'], ['red', 'star'], ['green', 'star'], ['blue', 'star'], ['yellow', 'star'], ['red', 'circle'], ['green', 'circle'], ['blue', 'circle'], ['yellow', 'circle']];
+     var shape_attribution_opts=[['triangle', 'red'], ['triangle', 'green'], ['triangle', 'blue'], ['triangle', 'yellow'], ['square', 'red'], ['square', 'green'], ['blue', 'blue'], ['square', 'yellow'], ['star', 'red'], ['star', 'green'], ['star', 'blue'], ['star', 'yellow'], ['circle', 'red'], ['circle', 'green'], ['circle', 'blue'], ['circle', 'yellow']];
      var shape_equilibrium_opts=['triangle','square','star','circle','red','green','blue','yellow'];
-     var shape_priority_opts=[['triangle','square'], ['triangle','star'], ['triangle','circle'], ['square','triangle'], ['square','star'], ['square','circle'], ['star','triangle'], ['star','square'], ['star','circle'], ['circle','triangle'], ['circle','square'], ['circle','star']];
+     //var shape_priority_opts=[['triangle','square'], ['triangle','star'], ['triangle','circle'], ['square','triangle'], ['square','star'], ['square','circle'], ['star','triangle'], ['star','square'], ['star','circle'], ['circle','triangle'], ['circle','square'], ['circle','star']];
+     var shape_priority_opts=[['red','green'], ['red','blue'], ['red','yellow'], ['green','red'], ['green','blue'], ['green','yellow'], ['blue','red'], ['blue','green'], ['blue','yellow'], ['yellow','red'], ['yellow','green'], ['yellow','blue']];
      var shape_repulsion_opts=[['triangle','square'], ['triangle','star'], ['triangle','circle'], ['square','star'], ['square','circle'], ['star','circle'], ['red', 'green'], ['red', 'blue'], ['red', 'yellow'], ['green', 'blue'], ['green', 'yellow'], ['blue', 'yellow']];
      var shape_uniformity_opts=['triangle','square','star','circle','red','green','blue','yellow'];
 
