@@ -49,6 +49,7 @@
                       <div class="btn-group" data-toggle="buttons">
                           <label class="btn btn-primary active"><input type="radio" name="card_type" id="type1" autocomplete="off" value="letter" checked>DNA</label>
                           <label class="btn btn-primary"><input type="radio" name="card_type" id="type2" autocomplete="off" value="shape">Shape</label>
+                          <label class="btn btn-primary"><input type="radio" name="card_type" id="type3" autocomplete="off" value="card">Playing Card</label>
                       </div>
                   </div>
               </div>
@@ -79,56 +80,74 @@
 
               <div class="row">
 		<div class="col-xs-12">
-                  <button class="btn btn-default" id="startGame">View Rules</button>
+                  <button class="btn btn-primary" id="startGame">Start</button>
 		</div>
               </div>
               <hr>
               <div class="row invis" id="a_jacency">
 		<div class="col-xs-12">
                   <h2>Adjacency</h2>
-                  <p>All <span id="adjacency_val">triangles</span> cards must be next to eachother. (Minimum 2)</p>
+                  <p>All <span id="adjacency_val"></span> cards must be next to eachother. (Minimum 2)</p>
 		</div>
               </div>
               <div class="row invis" id="attraction">
 		<div class="col-xs-12">
                   <h2>Attraction</h2>
-                  <p>All <span id="attraction_val">triangles</span> cards must have 3 non-empty spaces next to them. (Minimum 1)</p>
+                  <p>All <span id="attraction_val"></span> cards must have 3 non-empty spaces next to them. (Minimum 1)</p>
 		</div>
               </div>
               <div class="row invis" id="attribution">
 		<div class="col-xs-12">
                   <h2>Attribution</h2>
-                  <p>All <span id="attribution_val1">triangles</span> must also be <span id="attribution_val2">triangles</span>. (Minimum 1)</p>
+                  <p>All <span id="attribution_val1"></span> must also be <span id="attribution_val2"></span>. (Minimum 1)</p>
 		</div>
               </div>
               <div class="row invis" id="equilibrium">
 		<div class="col-xs-12">
                   <h2>Equilibrium</h2>
-                  <p>There must be the same amount of <span id="equilibrium_val">triangles</span> above and below the middle line. (Minimum 2)</p>
+                  <p>There must be the same amount of <span id="equilibrium_val"></span> above and below the middle line. (Minimum 2)</p>
 		</div>
               </div>
               <div class="row invis" id="priority">
 		<div class="col-xs-12">
                   <h2>Priority</h2>
-                  <p>There must be a greater number of <span id="priority_val1">triangles</span> cards than <span id="priority_val2">triangles</span>. Only the first card type must exist.</p>
+                  <p>There must be a greater number of <span id="priority_val1"></span> cards than <span id="priority_val2"></span>. (Minimum 1 of the first card).</p>
 		</div>
               </div>
               <div class="row invis" id="repulsion">
 		<div class="col-xs-12">
                   <h2>Repulsion</h2>
-                  <p>No <span id="repulsion_val1">triangles</span> next to any <span id="repulsion_val2">triangles</span>. (Minimum 1 of each)</p>
+                  <p>No <span id="repulsion_val1"></span> next to any <span id="repulsion_val2"></span>. (Minimum 1 of each)</p>
 		</div>
               </div>
               <div class="row invis" id="uniformity">
 		<div class="col-xs-12">
                   <h2>Uniformity</h2>
-                  <p>All <span id="uniformity_val">triangles</span> must be in a single column. (Minimum 2)</p>
+                  <p>All <span id="uniformity_val"></span> must be in a single column. (Minimum 2)</p>
 		</div>
               </div>
               <div class="row invis" id="zoning">
 		<div class="col-xs-12">
                   <h2>Zoning</h2>
-                  <p>There can be no cards in the following area: <span id="zoning_val">triangles</span></p>
+                  <p>There can be no cards in the following area: <span id="zoning_val"></span></p>
+		</div>
+              </div>
+              <hr>
+              <div class="row">
+		<div class="col-xs-12">
+                  <button class="btn btn-default" id="viewRules" style="margin-bottom: 20px">Show / Hide All Rules</button>
+		</div>
+              </div>
+              <div class="row invis" id="rules">
+		<div class="col-xs-12">
+                    <p><strong>Adjacency</strong>: All [<mark><span class="card_type"></span></mark> / <mark><span class="card_color"></span></mark>] cards must be next to eachother. (Minimum 2)</p>
+                    <p><strong>Attraction</strong>: All [<mark><span class="card_type"></span></mark> / <mark><span class="card_color"></span></mark>] cards must have 3 non-empty spaces next to them. (Minimum 1)</p>
+                    <p><strong>Attribution</strong>: All [<mark><span class="card_type"></span></mark>] cards must be [<mark><span class="card_color"></span></mark>]. (Minimum 1)</p>
+                    <p><strong>Equilibrium</strong>: There must be the same amount of [<mark><span class="card_type"></span></mark> / <mark><span class="card_color"></span></mark>] cards above and below the middle line. (Minimum 2)</p>
+                    <p><strong>Priority</strong>: There must be a greater number of [<mark><span class="card_color"></span></mark>] cards than [<mark><span class="card_color"></span></mark>]. (Minimum 1 of the first card).</p>
+                    <p><strong>Repulsion</strong>: No [<mark><span class="card_type"></span></mark> / <mark><span class="card_color"></span></mark>] cards next to any [<mark><span class="card_type"></span></mark> / <mark><span class="card_color"></span></mark>]. Possible values are <mark><span class="card_type"></span></mark>/<mark><span class="card_type"></span></mark> or <mark><span class="card_color"></span></mark>/<mark><span class="card_color"></span></mark>. (Minimum 1 of each)</p>
+                    <p><strong>Uniformity</strong>: All [<mark><span class="card_type"></span></mark> / <mark><span class="card_color"></span></mark>] cards must be in the same column. (Minimum 2)</p>
+                    <p><strong>Zoning</strong>: No cards in a single [row / column / 2x2 quadrant].</p>
 		</div>
               </div>
           </div>
@@ -170,7 +189,7 @@
      var letter_adjacency_opts=['T','C','G','A','red','green','blue','yellow'];
      var letter_attraction_opts=['T','C','G','A','red','green','blue','yellow'];
      //var letter_attribution_opts=[['red', 'T'], ['green', 'T'], ['blue', 'T'], ['yellow', 'T'], ['red', 'C'], ['green', 'C'], ['blue', 'C'], ['yellow', 'C'], ['red', 'G'], ['green', 'G'], ['blue', 'G'], ['yellow', 'G'], ['red', 'A'], ['green', 'A'], ['blue', 'A'], ['yellow', 'A']];
-     var letter_attribution_opts=[['T', 'red'], ['T', 'green'], ['T', 'blue'], ['T', 'yellow'], ['C', 'red'], ['C', 'green'], ['C', 'blue'], ['yellow', 'yellow'], ['G', 'red'], ['G', 'green'], ['G', 'blue'], ['G', 'yellow'], ['A', 'red'], ['A', 'green'], ['A', 'blue'], ['A', 'yellow']];
+     var letter_attribution_opts=[['T', 'red'], ['T', 'green'], ['T', 'blue'], ['T', 'yellow'], ['C', 'red'], ['C', 'green'], ['C', 'blue'], ['C', 'yellow'], ['G', 'red'], ['G', 'green'], ['G', 'blue'], ['G', 'yellow'], ['A', 'red'], ['A', 'green'], ['A', 'blue'], ['A', 'yellow']];
      var letter_equilibrium_opts=['T','C','G','A','red','green','blue','yellow'];
      //var letter_priority_opts=[['T','C'], ['T','G'], ['T','A'], ['C','T'], ['C','G'], ['C','A'], ['G','T'], ['G','C'], ['G','A'], ['A','T'], ['A','C'], ['A','G']];
      var letter_priority_opts=[['red','green'], ['red','blue'], ['red','yellow'], ['green','red'], ['green','blue'], ['green','yellow'], ['blue','red'], ['blue','green'], ['blue','yellow'], ['yellow','red'], ['yellow','green'], ['yellow','blue']];
@@ -180,12 +199,22 @@
      var shape_adjacency_opts=['triangle','square','star','circle','red','green','blue','yellow'];
      var shape_attraction_opts=['triangle','square','star','circle','red','green','blue','yellow'];
      //var shape_attribution_opts=[['red', 'triangle'], ['green', 'triangle'], ['blue', 'triangle'], ['yellow', 'triangle'], ['red', 'square'], ['green', 'square'], ['blue', 'square'], ['yellow', 'square'], ['red', 'star'], ['green', 'star'], ['blue', 'star'], ['yellow', 'star'], ['red', 'circle'], ['green', 'circle'], ['blue', 'circle'], ['yellow', 'circle']];
-     var shape_attribution_opts=[['triangle', 'red'], ['triangle', 'green'], ['triangle', 'blue'], ['triangle', 'yellow'], ['square', 'red'], ['square', 'green'], ['blue', 'blue'], ['square', 'yellow'], ['star', 'red'], ['star', 'green'], ['star', 'blue'], ['star', 'yellow'], ['circle', 'red'], ['circle', 'green'], ['circle', 'blue'], ['circle', 'yellow']];
+     var shape_attribution_opts=[['triangle', 'red'], ['triangle', 'green'], ['triangle', 'blue'], ['triangle', 'yellow'], ['square', 'red'], ['square', 'green'], ['square', 'blue'], ['square', 'yellow'], ['star', 'red'], ['star', 'green'], ['star', 'blue'], ['star', 'yellow'], ['circle', 'red'], ['circle', 'green'], ['circle', 'blue'], ['circle', 'yellow']];
      var shape_equilibrium_opts=['triangle','square','star','circle','red','green','blue','yellow'];
      //var shape_priority_opts=[['triangle','square'], ['triangle','star'], ['triangle','circle'], ['square','triangle'], ['square','star'], ['square','circle'], ['star','triangle'], ['star','square'], ['star','circle'], ['circle','triangle'], ['circle','square'], ['circle','star']];
      var shape_priority_opts=[['red','green'], ['red','blue'], ['red','yellow'], ['green','red'], ['green','blue'], ['green','yellow'], ['blue','red'], ['blue','green'], ['blue','yellow'], ['yellow','red'], ['yellow','green'], ['yellow','blue']];
      var shape_repulsion_opts=[['triangle','square'], ['triangle','star'], ['triangle','circle'], ['square','star'], ['square','circle'], ['star','circle'], ['red', 'green'], ['red', 'blue'], ['red', 'yellow'], ['green', 'blue'], ['green', 'yellow'], ['blue', 'yellow']];
      var shape_uniformity_opts=['triangle','square','star','circle','red','green','blue','yellow'];
+
+     var card_adjacency_opts=['5','10','Queen','Ace','heart','club','diamond','spade'];
+     var card_attraction_opts=['5','10','Queen','Ace','heart','club','diamond','spade'];
+     //var card_attribution_opts=[['heart', 'T'], ['club', 'T'], ['diamond', 'T'], ['spade', 'T'], ['heart', 'C'], ['club', 'C'], ['diamond', 'C'], ['spade', 'C'], ['heart', 'G'], ['club', 'G'], ['diamond', 'G'], ['spade', 'G'], ['heart', 'A'], ['club', 'A'], ['diamond', 'A'], ['spade', 'A']];
+     var card_attribution_opts=[['5', 'heart'], ['5', 'club'], ['5', 'diamond'], ['5', 'spade'], ['10', 'heart'], ['10', 'club'], ['10', 'diamond'], ['10', 'spade'], ['Queen', 'heart'], ['Queen', 'club'], ['Queen', 'diamond'], ['Queen', 'spade'], ['Ace', 'heart'], ['Ace', 'club'], ['Ace', 'diamond'], ['Ace', 'spade']];
+     var card_equilibrium_opts=['5','10','Queen','Ace','heart','club','diamond','spade'];
+     //var card_priority_opts=[['T','C'], ['T','G'], ['T','A'], ['C','T'], ['C','G'], ['C','A'], ['G','T'], ['G','C'], ['G','A'], ['A','T'], ['A','C'], ['A','G']];
+     var card_priority_opts=[['heart','club'], ['heart','diamond'], ['heart','spade'], ['club','heart'], ['club','diamond'], ['club','spade'], ['diamond','heart'], ['diamond','club'], ['diamond','spade'], ['spade','heart'], ['spade','club'], ['spade','diamond']];
+     var card_repulsion_opts=[['5','10'], ['5','Queen'], ['5','Ace'], ['10','Queen'], ['10','Ace'], ['Queen','Ace'], ['heart', 'club'], ['heart', 'diamond'], ['heart', 'spade'], ['club', 'diamond'], ['club', 'spade'], ['diamond', 'spade']];
+     var card_uniformity_opts=['5','10','Queen','Ace','heart','club','diamond','spade'];
 
      var adjacency_opts=[];
      var attraction_opts=[];
@@ -214,6 +243,25 @@
 	 //$("#seedButton").click(function() {
 	 //$("#seedText").val(Math.floor((Math.random() * 999) + 1));
 	 //});
+         $(".card_type").html("letter");
+         $(".card_color").html("color");
+         $("input:radio[name=card_type]").change(function() {
+             var card_type="";
+             var card_color="";
+             var game_type=$("input:radio[name=card_type]:checked").val();
+             if (game_type == "letter") {
+                 card_type="letter";
+                 card_color="color";
+             } else if (game_type == "shape") {
+                 card_type="shape";
+                 card_color="color";
+             } else {
+                 card_type="value";
+                 card_color="suit";
+             }
+             $(".card_type").html(card_type);
+             $(".card_color").html(card_color);
+         });
          $("input:radio[name=num_players]").change(function () {
              var num_players=parseInt($("input:radio[name=num_players]:checked").val())-1;
              p_list=['pos1','pos2','pos3','pos4','pos5'];
@@ -228,10 +276,20 @@
 		 $("#"+p_list[num_players]).click();
 	     }
          });
+         $("#viewRules").click(function() {
+             if ($("#rules").hasClass("invis")) {
+                 $("#rules").removeClass("invis");
+                 $("#rules").addClass("vis");
+             } else {
+                 $("#rules").addClass("invis");
+                 $("#rules").removeClass("vis");
+             }
+         });
          $("#startGame").click(function() {
              Math.seedrandom(hashCode($("#seedText").val()));
 
              var card_type=$("input:radio[name=card_type]:checked").val();
+             
              if (card_type == "letter") {
                  adjacency_opts =  letter_adjacency_opts;
                  attraction_opts = letter_attraction_opts;
@@ -239,8 +297,8 @@
                  equilibrium_opts =letter_equilibrium_opts;
                  priority_opts =   letter_priority_opts;
                  repulsion_opts =  letter_repulsion_opts;
-                 uniformity_opts = letter_uniformity_opts;
-             } else {
+                 uniformity_opts = letter_uniformity_opts;                 
+             } else if (card_type == "shape") {
                  adjacency_opts =  shape_adjacency_opts;
                  attraction_opts = shape_attraction_opts;
                  attribution_opts =shape_attribution_opts;
@@ -248,6 +306,14 @@
                  priority_opts =   shape_priority_opts;
                  repulsion_opts =  shape_repulsion_opts;
                  uniformity_opts = shape_uniformity_opts;
+             } else {
+                 adjacency_opts =  card_adjacency_opts;
+                 attraction_opts = card_attraction_opts;
+                 attribution_opts =card_attribution_opts;
+                 equilibrium_opts =card_equilibrium_opts;
+                 priority_opts =   card_priority_opts;
+                 repulsion_opts =  card_repulsion_opts;
+                 uniformity_opts = card_uniformity_opts;
              }
 
              var adjacency = adjacency_opts[Math.floor(Math.random() * adjacency_opts.length)];
